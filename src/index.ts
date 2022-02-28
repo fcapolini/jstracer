@@ -21,7 +21,6 @@ const jsstack: any[] = [];
 })();
 
 async function transform(inFile: string, outFile: string) {
-  console.log(`transform(${inFile}, ${outFile})`);
   const src = await fs.promises.readFile(inFile);
   const parsed = parse(src.toString());
   patchFunctions(parsed.functions, '_jstrace_fn_entry_', '_jstrace_fn_exit_');
@@ -118,7 +117,6 @@ function buildTracingFunctionCall(tracingFunctionId: string,
       tracedFunctionId?: string,
       lineNr?: number,
       colNr?: number): Statement {
-  console.log(tracedFunctionId);//tempdebug
   return {
     type: 'ExpressionStatement',
     expression: {
